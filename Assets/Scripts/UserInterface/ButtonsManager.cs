@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class ButtonsManager : MonoBehaviour
 {
     public GameObject mainScreen;
+    public GameObject startButton;
     public GameObject settingsScreen;
+    
     public GameObject colorBlindButton;
     public GameObject homeButton;
+
+    public void SelectStartButton()
+    {
+        SceneManager.LoadScene("GamePlayScene");
+    }
 
     public void SelectSettingsButton()
     {
