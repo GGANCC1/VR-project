@@ -7,20 +7,42 @@ using TMPro;
 public class ButtonsManager : MonoBehaviour
 {
     public GameObject mainScreen;
-    
+    public GameObject settingsScreen;
     public GameObject colorBlindButton;
-    public GameObject colorBlindButtonText;
+    public GameObject homeButton;
+
     public void SelectSettingsButton()
     {
         mainScreen.SetActive(false);
+        settingsScreen.SetActive(true);
     }
 
     public void ChangeColorBlindMode()
     {
         Image img = colorBlindButton.GetComponent<Image>();
-        img.color = new Color(0, 0, 0, 192);
+        TextMeshProUGUI text = colorBlindButton.GetComponentInChildren<TextMeshProUGUI>();
 
-        TextMeshPro text = colorBlindButtonText.GetComponent<TextMeshPro>();
-        text.color = new Color(255, 255, 255, 0);
+        if (Settings.isColorBlind == false)
+        {
+            img.color = new Color32(0, 0, 0, 192);
+
+            text.color = new Color32(255, 255, 255, 255);
+
+            Settings.isColorBlind = true;
+        }
+        else
+        {
+            img.color = new Color32(255, 255, 255, 192);
+
+            text.color = new Color32(0, 0, 0, 255);
+
+            Settings.isColorBlind = false;
+        }
+    }
+
+    public void SelectHomeButton()
+    {
+        mainScreen.SetActive(true);
+        settingsScreen.SetActive(false);
     }
 }
